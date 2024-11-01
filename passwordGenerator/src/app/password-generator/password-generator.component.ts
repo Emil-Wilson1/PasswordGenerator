@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import {FormsModule} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-password-generator',
@@ -20,7 +21,7 @@ export class PasswordGeneratorComponent {
   errorMessage: string = '';
   savedPasswords: string[] = [];
 
-  constructor(private clipboard: Clipboard) {}
+  constructor(private clipboard: Clipboard,private toastr:ToastrService) {}
 
   generatePassword(): void {
     const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -51,14 +52,14 @@ export class PasswordGeneratorComponent {
   copyToClipboard(): void {
     if (this.generatedPassword) {
       this.clipboard.copy(this.generatedPassword);
-      alert('Password copied to clipboard!');
+      this.toastr.success('Password copied to clipboard!');
     }
   }
 
   copy(password:string) {
     if (password) {
       this.clipboard.copy(password);
-      alert('Password copied to clipboard!');
+      this.toastr.success('Password copied to clipboard!');
     }
   }
 
@@ -66,7 +67,7 @@ export class PasswordGeneratorComponent {
     if (this.generatedPassword) {
       this.savedPasswords.push(this.generatedPassword);
       this.generatedPassword = ''; // Clear after saving
-      alert('Password saved successfully!');
+      this.toastr.success('Password saved successfully!');
     }
   }
 }
