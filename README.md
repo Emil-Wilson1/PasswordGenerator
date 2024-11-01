@@ -27,7 +27,7 @@ Explore the live project here: [https://passwordgenerator.emilwilson.netlify.app
 
 2. Navigate to the project directory:
    ```bash
-   cd password-generator
+   cd passwordGenerator
 
 3. Install dependencies:
    ```bash
